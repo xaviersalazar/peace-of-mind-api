@@ -11,7 +11,8 @@ datasource db {
 }
 
 model Service {
-  id            Int         @id @default(autoincrement())
-  title         String
-  description   String?
+  id          Int     @id @default(autoincrement())
+  title       String
+  price       String?
+  description String?
 }
