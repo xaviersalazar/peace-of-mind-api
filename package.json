@@ -1,0 +1,11 @@
+{
+  "name": "peace-of-mind-api",
+  "version": "1.0.0",
+  "description": "api for peace of mind website",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Xavier Salazar",
+  "license": "ISC"
+}
