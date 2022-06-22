@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "api for peace of mind website",
   "main": "index.js",
+  "type": "module",
   "scripts": {
     "dev": "nodemon",
     "build": "rimraf ./build && tsc",
