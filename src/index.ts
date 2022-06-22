@@ -2,19 +2,30 @@ import { createServer } from "http";
 import express from "express";
 import { ApolloServer, gql } from "apollo-server-express";
 
+const { prisma } = require("../prisma/client");
+
 const startServer = async () => {
   const app = express();
   const httpServer = createServer(app);
 
   const typeDefs = gql`
     type Query {
-      hello: String
+      services: [Service]
+    }
+
+    type Service {
+      id: ID!
+      title: String!
+      price: String
+      description: String
     }
   `;
 
   const resolvers = {
     Query: {
-      hello: () => "Hello world!",
+      services: () => {
+        return prisma.service.findMany();
+      },
     },
   };
 
@@ -31,7 +42,7 @@ const startServer = async () => {
 
   httpServer.listen({ port: process.env.PORT || 4000 }, () =>
     console.log(
-      `⚡ Server listening on localhost:4000${apolloServer.graphqlPath}`
+      `⚡ Server listening on http://localhost:4000${apolloServer.graphqlPath}`
     )
   );
 };
