@@ -12,3 +12,6 @@ services:
       - '5432:5432'
 volumes:
   postgres:
+    environment:
+      - POSTGRES_USER=admin
+      - POSTGRES_PASSWORD=password
