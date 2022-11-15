@@ -10,18 +10,18 @@ datasource db {
 model Service {
   id          Int      @id @default(autoincrement())
   title       String
-  price       String?
   description String?
-  categoryId  Int      @unique @map("category_id")
   category    Category @relation(fields: [categoryId], references: [id])
+  categoryId  Int      @map("category_id")
+  prices      Price[]
 
   @@map("services")
 }
 
 model Category {
-  id           Int      @id @default(autoincrement())
-  categoryName String   @map("category_name")
-  service      Service?
+  id           Int       @id @default(autoincrement())
+  categoryName String    @map("category_name")
+  service      Service[]
 
   @@map("categories")
 }
@@ -31,6 +31,8 @@ model Price {
   price       String?
   unit        String?
   hasUpcharge Boolean? @default(false) @map("has_upcharge")
+  service     Service  @relation(fields: [serviceId], references: [id])
+  serviceId   Int      @map("service_id")
 
   @@map("prices")
 }
