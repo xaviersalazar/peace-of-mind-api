@@ -3,7 +3,9 @@ import { context, Context } from "./context.js";
 
 export const typeDefs = gql`
   type Query {
+    service(id: Int): Service
     services: [Service]
+    servicesPaginated(skip: Int, take: Int): ServicePaginated
     categories: [Category]
     prices: [Price]
   }
@@ -29,26 +31,54 @@ export const typeDefs = gql`
     hasUpcharge: Boolean
     service: Service
   }
+
+  type ServicePaginated {
+    services: [Service]
+    totalCount: Int
+  }
 `;
 
 export const resolvers = {
   Query: {
-    services: () => context.prisma.service.findMany(),
+    service: async (parent: any, { id }: any, context: Context) =>
+      await context.prisma.service.findUnique({
+        where: { id },
+      }),
+    services: async () => await context.prisma.service.findMany(),
+    servicesPaginated: async (
+      parent: any,
+      { skip, take }: any,
+      context: Context
+    ) => {
+      const services = await context.prisma.service.findMany({
+        skip,
+        take,
+        orderBy: {
+          category: {
+            categoryName: "asc",
+          },
+        },
+      });
+      const servicesCount = await context.prisma.service.count();
+
+      return {
+        services,
+        totalCount: servicesCount,
+      };
+    },
   },
   Service: {
-    category: (parent: any, _args: any, context: Context) => {
-      return context.prisma.service
+    category: (parent: any, _args: any, context: Context) =>
+      context.prisma.service
         .findUnique({
           where: { id: parent?.id },
         })
-        .category();
-    },
-    prices: (parent: any, _args: any, context: Context) => {
-      return context.prisma.service
+        .category(),
+    prices: (parent: any, _args: any, context: Context) =>
+      context.prisma.service
         .findUnique({
           where: { id: parent?.id },
         })
-        .prices();
-    },
+        .prices(),
   },
 };
