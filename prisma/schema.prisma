@@ -11,8 +11,29 @@ datasource db {
 }
 
 model Service {
-  id          Int     @id @default(autoincrement())
+  id          Int      @id @default(autoincrement())
   title       String
   price       String?
   description String?
+  category    Category @relation(fields: [categoryId], references: [id])
+  categoryId  Int      @unique @map("category_id")
+
+  @@map("service")
+}
+
+model Category {
+  id           Int      @id @default(autoincrement())
+  categoryName String   @map("category_name")
+  service      Service?
+
+  @@map("category")
+}
+
+model Price {
+  id          Int      @id @default(autoincrement())
+  price       String?
+  unit        String?
+  hasUpcharge Boolean? @default(false) @map("has_upcharge")
+
+  @@map("price")
 }

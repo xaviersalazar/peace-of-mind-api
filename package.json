@@ -1,7 +1,7 @@
 {
   "name": "peace-of-mind-api",
   "version": "1.0.0",
-  "description": "api for peace of mind website",
+  "description": "graphql api for peace of mind website",
   "main": "index.js",
   "type": "module",
   "scripts": {
