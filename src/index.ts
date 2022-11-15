@@ -73,6 +73,7 @@ const startServer = async () => {
     typeDefs,
     resolvers,
     context: context,
+    introspection: true,
   });
 
   await apolloServer.start();
