@@ -1,11 +1,17 @@
 import { createServer } from "http";
 import express from "express";
 import { ApolloServer, gql } from "apollo-server-express";
-import PrismaClientPkg from "@prisma/client";
-
-const PrismaClient = PrismaClientPkg.PrismaClient;
+import { PrismaClient } from "@prisma/client";
 
 const prisma = new PrismaClient();
+
+interface Context {
+  prisma: PrismaClient;
+}
+
+const context: Context = {
+  prisma: prisma,
+};
 
 const startServer = async () => {
   const app = express();
@@ -14,20 +20,51 @@ const startServer = async () => {
   const typeDefs = gql`
     type Query {
       services: [Service]
+      categories: [Category]
+      prices: [Price]
     }
 
     type Service {
       id: ID!
       title: String!
-      price: String
       description: String
+      category: Category
+      prices: [Price]
+    }
+
+    type Category {
+      id: ID!
+      categoryName: String!
+      service: [Service]
+    }
+
+    type Price {
+      id: ID!
+      price: String
+      unit: String
+      hasUpcharge: Boolean
+      service: Service
     }
   `;
 
   const resolvers = {
     Query: {
-      services: () => {
-        return prisma.service.findMany();
+      services: () => context.prisma.service.findMany(),
+    },
+    Service: {
+      category: (parent: any, _args: any, context: Context) => {
+        return context.prisma.service
+          .findUnique({
+            where: { id: parent?.id },
+          })
+          .category();
+      },
+      prices: (parent: any, _args: any, context: Context) => {
+        return context.prisma.service
+          .findUnique({
+            where: { id: parent?.id },
+          })
+          .prices();
       },
     },
   };
@@ -35,6 +72,7 @@ const startServer = async () => {
   const apolloServer = new ApolloServer({
     typeDefs,
     resolvers,
+    context: context,
   });
 
   await apolloServer.start();

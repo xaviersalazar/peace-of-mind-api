@@ -14,16 +14,12 @@ model Service {
   category    Category @relation(fields: [categoryId], references: [id])
   categoryId  Int      @map("category_id")
   prices      Price[]
-
-  @@map("services")
 }
 
 model Category {
   id           Int       @id @default(autoincrement())
   categoryName String    @map("category_name")
   service      Service[]
-
-  @@map("categories")
 }
 
 model Price {
@@ -33,6 +29,4 @@ model Price {
   hasUpcharge Boolean? @default(false) @map("has_upcharge")
   service     Service  @relation(fields: [serviceId], references: [id])
   serviceId   Int      @map("service_id")
-
-  @@map("prices")
 }
