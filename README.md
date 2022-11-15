@@ -1,2 +1,3 @@
-# Peace of Mind API (WIP)
-GraphQL API to be used for Peace of Mind 
+# Peace of Mind GraphQL API
+
+GraphQL endpoint: `http://localhost:4000/graphql`
