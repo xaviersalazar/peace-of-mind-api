@@ -6,6 +6,7 @@ export const typeDefs = gql`
     service(id: Int): Service
     services: [Service]
     servicesPaginated(skip: Int, take: Int): ServicePaginated
+    servicesByCategory(categoryId: Int): [Service]
     categories: [Category]
     prices: [Price]
   }
@@ -34,15 +35,17 @@ export const typeDefs = gql`
 
   type ServicePaginated {
     services: [Service]
+    pageNumber: Int
+    totalPages: Int
     totalCount: Int
   }
 `;
 
 export const resolvers = {
   Query: {
-    service: async (parent: any, { id }: any, context: Context) =>
+    service: async (parent: any, _args: any, context: Context) =>
       await context.prisma.service.findUnique({
-        where: { id },
+        where: { id: _args.id },
       }),
     services: async () => await context.prisma.service.findMany(),
     servicesPaginated: async (
@@ -63,9 +66,22 @@ export const resolvers = {
 
       return {
         services,
+        pageNumber: Math.floor(skip / take) + 1,
+        totalPages: Math.round(servicesCount / take),
         totalCount: servicesCount,
       };
     },
+    servicesByCategory: async (parent: any, _args: any, context: Context) =>
+      await context.prisma.service.findMany({
+        where: {
+          categoryId: {
+            equals: _args.categoryId,
+          },
+        },
+        orderBy: {
+          title: "asc",
+        },
+      }),
   },
   Service: {
     category: (parent: any, _args: any, context: Context) =>
