@@ -15,7 +15,7 @@ model Service {
   categoryId  Int      @unique @map("category_id")
   category    Category @relation(fields: [categoryId], references: [id])
 
-  @@map("service")
+  @@map("services")
 }
 
 model Category {
@@ -23,7 +23,7 @@ model Category {
   categoryName String   @map("category_name")
   service      Service?
 
-  @@map("category")
+  @@map("categories")
 }
 
 model Price {
@@ -32,5 +32,5 @@ model Price {
   unit        String?
   hasUpcharge Boolean? @default(false) @map("has_upcharge")
 
-  @@map("price")
+  @@map("prices")
 }
