@@ -49,7 +49,6 @@ export const typeDefs = gql`
     price: String
     unit: String
     hasUpcharge: Boolean
-    serviceId: ID!
   }
 
   input EditServiceInput {
@@ -116,7 +115,7 @@ export const resolvers = {
         data: _args.service.prices.map((price: any) => ({
           ...price,
           id: +price.id,
-          serviceId: +price.serviceId,
+          serviceId: id,
         })),
       });
 
