@@ -11,6 +11,10 @@ export const typeDefs = gql`
     prices: [Price]
   }
 
+  type Mutation {
+    editService(service: EditServiceInput!): Service
+  }
+
   type Service {
     id: ID!
     title: String!
@@ -38,6 +42,21 @@ export const typeDefs = gql`
     pageNumber: Int
     totalPages: Int
     totalCount: Int
+  }
+
+  input EditPriceInput {
+    id: ID!
+    price: String
+    unit: String
+    hasUpcharge: Boolean
+    serviceId: ID!
+  }
+
+  input EditServiceInput {
+    id: ID!
+    title: String!
+    description: String
+    prices: [EditPriceInput]
   }
 `;
 
@@ -82,6 +101,27 @@ export const resolvers = {
           title: "asc",
         },
       }),
+  },
+  Mutation: {
+    editService: async (parent: any, _args: any, context: Context) => {
+      const id = +_args.service.id;
+
+      await context.prisma.price.deleteMany({
+        where: {
+          serviceId: id,
+        },
+      });
+
+      await context.prisma.price.createMany({
+        data: _args.service.prices.map((price: any) => ({
+          ...price,
+          id: +price.id,
+          serviceId: +price.serviceId,
+        })),
+      });
+
+      return await context.prisma.service.findUnique({ where: { id } });
+    },
   },
   Service: {
     category: (parent: any, _args: any, context: Context) =>
