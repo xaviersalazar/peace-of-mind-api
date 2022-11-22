@@ -53,7 +53,6 @@ export const typeDefs = gql`
 
   input EditServiceInput {
     id: ID!
-    title: String!
     description: String
     prices: [EditPriceInput]
   }
@@ -74,11 +73,16 @@ export const resolvers = {
       const services = await context.prisma.service.findMany({
         skip,
         take,
-        orderBy: {
-          category: {
-            categoryName: "asc",
+        orderBy: [
+          {
+            category: {
+              categoryName: "asc",
+            },
           },
-        },
+          {
+            title: "asc",
+          },
+        ],
       });
       const servicesCount = await context.prisma.service.count();
 
@@ -117,6 +121,13 @@ export const resolvers = {
           id: +price.id,
           serviceId: id,
         })),
+      });
+
+      await context.prisma.service.update({
+        where: { id },
+        data: {
+          description: _args.service.description,
+        },
       });
 
       return await context.prisma.service.findUnique({ where: { id } });
