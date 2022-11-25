@@ -13,6 +13,7 @@ export const typeDefs = gql`
 
   type Mutation {
     editService(service: EditServiceInput!): Service
+    deleteService(id: Int!): Service
   }
 
   type Service {
@@ -131,6 +132,19 @@ export const resolvers = {
       });
 
       return await context.prisma.service.findUnique({ where: { id } });
+    },
+    deleteService: async (parent: any, _args: any, context: Context) => {
+      const id = +_args.id;
+
+      await context.prisma.price.deleteMany({
+        where: {
+          serviceId: id,
+        },
+      });
+
+      return await context.prisma.service.delete({
+        where: { id },
+      });
     },
   },
   Service: {
