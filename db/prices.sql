@@ -212,4 +212,6 @@ INSERT INTO prices ("id", "price", "unit", "service_id", "has_upcharge") VALUES
 (204, '300.00, 350.00', 'Range', 166, FALSE),
 (205, '325.00, 350.00', 'Range', 167, FALSE),
 (206, '245.00', NULL, 168, FALSE),
-(207, '260.00', NULL, 169, FALSE);
+(207, '260.00', NULL, 169, FALSE),
+(208, '250.00', '30 Minutes', 170, FALSE),
+(209, '300.00', '1 Hour', 170, FALSE);

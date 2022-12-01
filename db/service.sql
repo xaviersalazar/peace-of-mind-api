@@ -175,4 +175,5 @@ INSERT INTO services ("id", "title", "description", "category_id") VALUES
 (166, 'Organic Colors Systems Thermal Straightening', NULL, 29),
 (167, 'Organic Colors Systems Thermal Straightening with Haircut', NULL, 29),
 (168, 'Retouch', NULL, 29),
-(169, 'Retouch with Haircut', NULL, 29);
+(169, 'Retouch with Haircut', NULL, 29),
+(170, 'Venus Legacy', 'Venus Legacy is an advanced non-invasive medical device that effectively resolves challenging Face and body aesthetic needs, such as nonsurgical circumferential reduction, cellulite reduction, skin tightening, and wrinkle reduction. It decreases swelling and helps tighten the skin. We also advise all our patients receiving laser treatments that they too should improve the tightening of their skin. (We will have packets available when you purchase 6 you'll get the 7th one free.)', 3);
