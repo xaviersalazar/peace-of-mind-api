@@ -2,7 +2,6 @@
 -- Category's Data
 --
 -- Database: postgres
--- Generation Time: 2022-11-14 23:34:54.9710
 -- -------------------------------------------------------------
 
 INSERT INTO "Category" ("id", "category_name") VALUES
@@ -34,4 +33,7 @@ INSERT INTO "Category" ("id", "category_name") VALUES
 (27, 'Sets & Twists'),
 (28, 'Specialty'),
 (29, 'Straightening'),
-(30, 'Hair Extensions');
+(30, 'Hair Extensions'),
+(31, 'Besame Face'),
+(32, 'Besame Eyes'),
+(33, 'Besame Lips');
