@@ -5,7 +5,7 @@
 -- Generation Time: 2022-11-14 23:34:46.9970
 -- -------------------------------------------------------------
 
-INSERT INTO prices ("id", "price", "unit", "service_id", "has_upcharge") VALUES
+INSERT INTO "Price" ("id", "price", "unit", "service_id", "has_upcharge") VALUES
 (1, '67.00', '30 Minutes', 1, FALSE),
 (2, '122.00', '1 Hour', 1, FALSE),
 (3, '167.00', '1.5 Hours', 1, FALSE),

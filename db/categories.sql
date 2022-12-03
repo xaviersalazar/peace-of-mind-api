@@ -5,7 +5,7 @@
 -- Generation Time: 2022-11-14 23:34:54.9710
 -- -------------------------------------------------------------
 
-INSERT INTO categories ("id", "category_name") VALUES
+INSERT INTO "Category" ("id", "category_name") VALUES
 (1, 'Massages'),
 (2, 'Add On''s'),
 (3, 'Breast/Butt Lift & Fat Eliminator'),

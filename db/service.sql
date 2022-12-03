@@ -5,7 +5,7 @@
 -- Generation Time: 2022-11-14 23:34:36.6720
 -- -------------------------------------------------------------
 
-INSERT INTO services ("id", "title", "description", "category_id") VALUES
+INSERT INTO "Service" ("id", "title", "description", "category_id") VALUES
 (1, 'Chair Massage', 'Receive a 15 minute traditional Swedish massage that will help alleviate your stress, tension, pain or stiffness while increasing your energy level, alertness and creativity. Our professional Massage Therapists perform the massage in a specially designed ergonomic massage chair while you’re fully clothed, using traditional Swedish massage techniques', 1),
 (2, 'Aroma Therapy Oils', 'Natural oils extracted from flowers, bark, stems, leaves, roots or other parts of a plant to enhance psychological and physical well-being. The inhaled aroma from these essential oils is widely believed to stimulate brain function. Essential oils can also be absorbed through the skin, where they travel through the bloodstream and can promote whole-body healing. A form of alternative medicine, aromatherapy is gaining momentum. It is used for a variety of applications, including pain relief, mood enhancement and increased cognitive function. There are a wide number of essential oils available, each with its own healing properties. Oils are the heart of aromatherapy.', 2),
 (3, 'Therapeutic Cupping Massage', 'Pain Management, Injury and Surgical Recovery, Athletic Performance Enhancement, Clears Stagnation, Drains & Moves Fluids, Relieves Inflammation, Nervous System Sedation, Expels Congestion, Stretches Muscles & Connective Tissue, Loosens Adhesions, Nourishing Blood Supply To The Skin, Helps With Weight Loss, Helps Reduce Cellulite.', 2),
