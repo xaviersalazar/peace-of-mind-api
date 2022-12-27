@@ -8,6 +8,7 @@ export const typeDefs = gql`
     servicesPaginated(skip: Int, take: Int): ServicePaginated
     servicesByCategory(categoryId: Int): [Service]
     categories: [Category]
+    units: [Unit]
     prices: [Price]
   }
 
@@ -30,10 +31,16 @@ export const typeDefs = gql`
     service: [Service]
   }
 
+  type Unit {
+    id: ID!
+    name: String!
+    prices: [Price]
+  }
+
   type Price {
     id: ID!
     price: String
-    unit: String
+    unit: Unit
     hasUpcharge: Boolean
     service: Service
   }
@@ -48,7 +55,7 @@ export const typeDefs = gql`
   input EditPriceInput {
     id: ID!
     price: String
-    unit: String
+    unitId: Int!
     hasUpcharge: Boolean
   }
 
@@ -105,6 +112,14 @@ export const resolvers = {
           title: "asc",
         },
       }),
+    units: async (parent: any, _args: any, context: Context) =>
+      await context.prisma.unit.findMany({
+        orderBy: [
+          {
+            name: "asc",
+          },
+        ],
+      }),
   },
   Mutation: {
     editService: async (parent: any, _args: any, context: Context) => {
@@ -160,5 +175,13 @@ export const resolvers = {
           where: { id: parent?.id },
         })
         .prices(),
+  },
+  Price: {
+    unit: (parent: any, _args: any, context: Context) =>
+      context.prisma.price
+        .findUnique({
+          where: { id: parent?.id },
+        })
+        .unit(),
   },
 };
