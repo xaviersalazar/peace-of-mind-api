@@ -52,10 +52,15 @@ export const typeDefs = gql`
     totalCount: Int
   }
 
+  input UnitInput {
+    id: ID!
+    name: String!
+  }
+
   input EditPriceInput {
     id: ID!
     price: String
-    unitId: Int!
+    unit: UnitInput!
     hasUpcharge: Boolean
   }
 
@@ -133,8 +138,10 @@ export const resolvers = {
 
       await context.prisma.price.createMany({
         data: _args.service.prices.map((price: any) => ({
-          ...price,
           id: +price.id,
+          price: price.price,
+          unitId: +price.unit.id,
+          hasUpcharge: price.hasUpcharge,
           serviceId: id,
         })),
       });
