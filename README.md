@@ -11,8 +11,12 @@ GraphQL endpoint: `http://localhost:4000/graphql`
   - [x] ~~Service by id~~
   - [x] ~~Services by category id~~
   - [x] ~~Paginated services~~
+  - [x] ~~All units~~
 - [x] ~~Mutations~~
-  - [x] ~~Edit a service~~
+  - [ ] Edit a service
+    - [x] ~~Edit description and prices~~
+    - [ ] Add a price
+    - [ ] Delete a price
   - [x] ~~Delete a service~~
 
 ### v2.0
