@@ -13,10 +13,7 @@ GraphQL endpoint: `http://localhost:4000/graphql`
   - [x] ~~Paginated services~~
   - [x] ~~All units~~
 - [x] ~~Mutations~~
-  - [ ] Edit a service
-    - [x] ~~Edit description and prices~~
-    - [ ] Add a price
-    - [ ] Delete a price
+  - [x] ~~Edit a service~~
   - [x] ~~Delete a service~~
 
 ### v2.0
@@ -26,3 +23,5 @@ GraphQL endpoint: `http://localhost:4000/graphql`
 - [ ] Support for filtering paginated list by
     - `title`
     - `category`
+- [ ] Support for adding a new service
+- [ ] Support for adding/removing a price from a service
