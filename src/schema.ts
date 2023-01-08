@@ -23,6 +23,7 @@ export const typeDefs = gql`
     description: String
     category: Category
     prices: [Price]
+    imgName: String
   }
 
   type Category {

@@ -8,12 +8,13 @@ datasource db {
 }
 
 model Service {
-  id          Int      @id @default(autoincrement())
+  id          Int       @id @default(autoincrement())
   title       String
   description String?
-  category    Category @relation(fields: [categoryId], references: [id])
-  categoryId  Int      @map("category_id")
+  category    Category  @relation(fields: [categoryId], references: [id])
+  categoryId  Int       @map("category_id")
   prices      Price[]
+  imgName     String?
 }
 
 model Category {
@@ -23,17 +24,17 @@ model Category {
 }
 
 model Price {
-  id          Int      @id @default(autoincrement())
+  id          Int       @id @default(autoincrement())
   price       String?
   unit        Unit?     @relation(fields: [unitId], references: [id])
   unitId      Int?      @map("unit_id")
-  hasUpcharge Boolean? @default(false) @map("has_upcharge")
-  service     Service  @relation(fields: [serviceId], references: [id])
-  serviceId   Int      @map("service_id")
+  hasUpcharge Boolean?  @default(false) @map("has_upcharge")
+  service     Service   @relation(fields: [serviceId], references: [id])
+  serviceId   Int       @map("service_id")
 }
 
 model Unit {
-  id          Int      @id @default(autoincrement())
+  id          Int       @id @default(autoincrement())
   name        String
   price       Price[]
 }

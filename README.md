@@ -25,3 +25,4 @@ GraphQL endpoint: `http://localhost:4000/graphql`
     - `category`
 - [ ] Support for adding a new service
 - [ ] Support for adding/removing a price from a service
+- [ ] Support for changing picture of a service
