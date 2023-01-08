@@ -14,7 +14,7 @@ model Service {
   category    Category  @relation(fields: [categoryId], references: [id])
   categoryId  Int       @map("category_id")
   prices      Price[]
-  imgName     String?
+  imgName     String?   @map("img_name")
 }
 
 model Category {
