@@ -207,8 +207,8 @@ INSERT INTO "Service" ("id", "title", "description", "img_name", "category_id") 
 (198, 'American Beauty', NULL, '1945-americanbeauty-lipstick.jpg', 33),
 (199, 'Red Velvet', NULL, '1946-redvelvet-lipstick.jpg', 33),
 (200, 'Exotic Pink', NULL, '1955-exoticpink-lipstick.jpg', 33),
-(201, 'Red Hot Red', NULL, '1959-redhot-lipstick.jpg', 33),
-(202, 'Portrait Pink', NULL, '1963-potraitpink-lipstick.jpg', 33),
+(201, 'Red Hot Red', NULL, '1959-redhotred-lipstick.jpg', 33),
+(202, 'Portrait Pink', NULL, '1963-portraitpink-lipstick.jpg', 33),
 (203, 'Debutante Pink', NULL, '1967-debutantepink-lipstick.jpg', 33),
-(204, 'Dusty Rose', NULL, '19679-dustyrose-lipstick.jpg', 33),
+(204, 'Dusty Rose', NULL, '1969-dustyrose-lipstick.jpg', 33),
 (205, 'Chocolate Kiss', NULL, '1970-chocolatekiss-lipstick.jpg', 33);
