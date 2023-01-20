@@ -102,7 +102,7 @@ INSERT INTO "Service" ("id", "title", "description", "img_name", "category_id") 
 (93, 'Dutch Braid', NULL, 'finishing-touches-dutch-braid.jpg', 16),
 (94, 'Haircut & Blow Dry', NULL, 'haircut-blow-dry.jpg', 17),
 (95, 'Kid''s Haircut (12 & under)', NULL, 'haircut-kids.jpg', 17),
-(96, 'Dry Cut', NULL, 'haircut-dry-cut.jpg',  17),
+(96, 'Dry Cut', NULL, 'haircut-drycut.jpg',  17),
 (97, 'Bangs', NULL, 'haircut-bangs.jpg', 17),
 (98, 'Glossing', 'Performed following chemical service to add intense shine', 'haircolor-gloss.jpg', 18),
 (99, 'Temporary Color Rinse', NULL, 'haircolor-rinse.jpg', 18),
