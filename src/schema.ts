@@ -10,6 +10,7 @@ export const typeDefs = gql`
     categories: [Category]
     units: [Unit]
     prices: [Price]
+    search(searchInput: SearchInput): [Service]
   }
 
   type Mutation {
@@ -70,6 +71,10 @@ export const typeDefs = gql`
     description: String
     prices: [EditPriceInput]
   }
+
+  input SearchInput {
+    searchValue: String!
+  }
 `;
 
 export const resolvers = {
@@ -126,6 +131,27 @@ export const resolvers = {
           },
         ],
       }),
+    search: async (parent: any, _args: any, context: Context) => 
+      await context.prisma.service.findMany({
+        where: {
+          OR: [
+            {
+              title: {
+                search: _args.searchInput.searchValue,
+                mode: 'insensitive'
+              }
+            },
+            {
+              category: {
+                categoryName: {
+                  search: _args.searchInput.searchValue,
+                  mode: 'insensitive'
+                }
+              }
+            }
+          ]
+        }
+      })
   },
   Mutation: {
     editService: async (parent: any, _args: any, context: Context) => {
