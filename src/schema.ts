@@ -133,18 +133,29 @@ export const resolvers = {
       }),
     search: async (parent: any, _args: any, context: Context) => 
       await context.prisma.service.findMany({
+        take: 10,
         where: {
           OR: [
             {
               title: {
-                search: _args.searchInput.searchValue,
+                contains: _args.searchInput.searchValue,
                 mode: 'insensitive'
               }
             },
             {
               category: {
                 categoryName: {
-                  search: _args.searchInput.searchValue,
+                  contains: _args.searchInput.searchValue,
+                  mode: 'insensitive'
+                }
+              }
+            }
+          ],
+          NOT: [
+            {
+              category: {
+                categoryName: {
+                  contains: 'Besame',
                   mode: 'insensitive'
                 }
               }
