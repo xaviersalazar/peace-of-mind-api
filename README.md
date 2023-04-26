@@ -17,10 +17,7 @@ GraphQL endpoint: `http://localhost:4000/graphql`
   - [x] ~~Delete a service~~
 
 ### v2.0
-- [ ] Support for searching paginated list by
-    - `title`
-    - `category`
-- [ ] Support for filtering paginated list by
+- [x] ~~Support for searching~~
     - `title`
     - `category`
 - [ ] Support for adding a new service
